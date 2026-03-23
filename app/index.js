@@ -29,6 +29,20 @@ export default function Index() {
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 16, backgroundColor: "#000", alignItems: "center", justifyContent: "center" },
   titulo: { fontSize: 24, fontWeight: "bold", color: "#fff", marginBottom: 30 },
-  botaoAndar: { width: 200, padding: 15, marginVertical: 8, borderRadius: 10, backgroundColor: "#ED145B", alignItems: "center" },
+  botaoAndar: { 
+    width: 200, 
+    padding: 15, 
+    marginVertical: 8, 
+    borderRadius: 10, 
+    backgroundColor: "#ED145B", 
+    alignItems: "center",
+    shadowColor: "#ED145B",
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.9,
+    shadowRadius: 12,
+    elevation: 12,
+    borderWidth: 2,
+    borderColor: "#ED145B"
+  },
   textoBotao: { fontSize: 16, fontWeight: "bold", color: "#000" },
 });
