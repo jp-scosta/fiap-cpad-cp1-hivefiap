@@ -6,13 +6,17 @@ export default function Index() {
 
   return (
     <View style={styles.container}>
-      <Text style={{ fontSize: 25, textAlign: 'center', marginTop: 20, color: "#fff", fontWeight: "bold" }}>Bem-vindo ao HiveFiap!</Text>
+      <Text style={{ fontSize: 25, textAlign: 'center', marginTop: 20, color: "#fff", fontWeight: "bold" }}>
+        Bem-vindo ao HiveFiap!
+      </Text>
       <Text style={styles.titulo}>Escolha um andar</Text>
 
       {andares.map((andar) => (
         <Link key={andar} href={`/salas-default?andar=${andar}`} asChild>
           <TouchableOpacity style={styles.botaoAndar}>
             <Text style={styles.textoBotao}>Andar {andar}</Text>
+            {}
+            <View style={styles.statusBadge} />
           </TouchableOpacity>
         </Link>
       ))}
@@ -20,6 +24,8 @@ export default function Index() {
       <Link href="/lab-maker" asChild>
         <TouchableOpacity style={styles.botaoAndar}>
           <Text style={styles.textoBotao}>Lab Maker</Text>
+          {}
+          <View style={styles.statusBadge} />
         </TouchableOpacity>
       </Link>
     </View>
@@ -42,7 +48,18 @@ const styles = StyleSheet.create({
     shadowRadius: 12,
     elevation: 12,
     borderWidth: 2,
-    borderColor: "#ED145B"
+    borderColor: "#ED145B",
+    position: "relative" 
   },
   textoBotao: { fontSize: 16, fontWeight: "bold", color: "#000" },
+
+  statusBadge: {
+    position: "absolute",
+    top: 8,
+    right: 8,
+    width: 12,
+    height: 12,
+    borderRadius: 6,
+    backgroundColor: "green"
+  }
 });
