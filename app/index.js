@@ -6,6 +6,7 @@ export default function Index() {
 
   return (
     <View style={styles.container}>
+      <Text style={{ fontSize: 25, textAlign: 'center', marginTop: 20, color: "#fff", fontWeight: "bold" }}>Bem-vindo ao HiveFiap!</Text>
       <Text style={styles.titulo}>Escolha um andar</Text>
 
       {andares.map((andar) => (
