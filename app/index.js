@@ -26,7 +26,7 @@ export default function Index() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#000", alignItems: "center", justifyContent: "center" },
+  container: { flex: 1, padding: 16, backgroundColor: "#000", alignItems: "center", justifyContent: "center" },
   titulo: { fontSize: 24, fontWeight: "bold", color: "#fff", marginBottom: 30 },
   botaoAndar: { width: 200, padding: 15, marginVertical: 8, borderRadius: 10, backgroundColor: "#ED145B", alignItems: "center" },
   textoBotao: { fontSize: 16, fontWeight: "bold", color: "#000" },
