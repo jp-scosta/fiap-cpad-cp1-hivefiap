@@ -3,11 +3,10 @@ import { useState, useEffect } from "react";
 import { useLocalSearchParams, useRouter } from "expo-router";
 
 export default function SalasDefault() {
-  const { andar } = useLocalSearchParams(); 
+  const { andar } = useLocalSearchParams();
   const andarNum = Number(andar);
   const quantidadeSalas = 12;
   const router = useRouter();
-
   const [salas, setSalas] = useState([]);
   const [reservaFeita, setReservaFeita] = useState(false);
   const [salaReservada, setSalaReservada] = useState(null);
@@ -30,15 +29,34 @@ export default function SalasDefault() {
       Alert.alert("Você já reservou uma sala!", `Sala reservada: ${salaReservada}`);
       return;
     }
-
     setSalas((prev) =>
       prev.map((s) => (s.id === sala.id ? { ...s, ocupada: true } : s))
     );
-
     setReservaFeita(true);
     setSalaReservada(sala.nome);
-
     Alert.alert("Reserva Confirmada!", `Você reservou: ${sala.nome}`);
+  };
+
+  const desreservarSala = (sala) => {
+    Alert.alert(
+      "Cancelar Reserva",
+      `Deseja cancelar a reserva de ${sala.nome}?`,
+      [
+        { text: "Não", style: "cancel" },
+        {
+          text: "Sim",
+          style: "destructive",
+          onPress: () => {
+            setSalas((prev) =>
+              prev.map((s) => (s.id === sala.id ? { ...s, ocupada: false } : s))
+            );
+            setReservaFeita(false);
+            setSalaReservada(null);
+            Alert.alert("Reserva Cancelada", `A reserva de ${sala.nome} foi cancelada.`);
+          },
+        },
+      ]
+    );
   };
 
   return (
@@ -48,7 +66,6 @@ export default function SalasDefault() {
     >
       <Text style={styles.titulo}>Andar {andar}</Text>
       {reservaFeita && <Text style={styles.subtitulo}>Sua reserva: {salaReservada}</Text>}
-
       {salas.map((sala) => (
         <TouchableOpacity
           key={sala.id}
@@ -57,7 +74,11 @@ export default function SalasDefault() {
             sala.ocupada ? styles.ocupada : styles.livre,
           ])}
           onPress={() => {
+            if (sala.ocupada && sala.nome === salaReservada) {
+              desreservarSala(sala);
+            } else {
               reservarSala(sala);
+            }
           }}
         >
           <Text style={styles.nome}>{sala.nome}</Text>
